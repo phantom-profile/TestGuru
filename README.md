@@ -19,5 +19,8 @@
 
 * List of used object's models in project
     - User (auth and not auth)
-    - Question (part of test)
-    - Test (list of questions with name)
+    - Question (part of Test)
+    - Answer (variants of response to Question)
+    - Test (list of Questions with name)
+    - Category (title of Tests' group)
+    - Result (quality of User's Answers to Test)
