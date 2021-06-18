@@ -4,7 +4,8 @@
 class Test < ApplicationRecord
 
   def self.tests_by_category(title)
-    category = Category.find_by(title: title)
-    Test.where(category_id: category.id).pluck(:title)
+    Category.joins('INNER JOIN tests ON tests.category_id = categories.id')
+            .where(title: title)
+            .pluck('tests.title')
   end
 end
