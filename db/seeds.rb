@@ -8,7 +8,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-users = User.create(
+User.create!(
   [
     { username: 'user1',
       password: 'user1_p',
@@ -28,7 +28,7 @@ users = User.create(
   ]
 )
 
-categories = Category.create(
+Category.create!(
   [
     { title: 'frontend' },
     { title: 'backend' },
@@ -36,7 +36,7 @@ categories = Category.create(
   ]
 )
 
-tests = Test.create(
+Test.create!(
   [
     { title: 'html',
       level: 0,
@@ -53,7 +53,7 @@ tests = Test.create(
   ]
 )
 
-questions = Question.create(
+Question.create!(
   [
     { body: ' What html is?',
       test_id: 1 },
@@ -64,7 +64,7 @@ questions = Question.create(
   ]
 )
 
-answers = Answer.create(
+Answer.create!(
   [
     { body: 'html',
       correct: true,
@@ -82,5 +82,18 @@ answers = Answer.create(
       question_id: 3 },
     { body: 'not ruby',
       question_id: 3 }
+  ]
+)
+
+TestsUser.create!(
+  [
+    { user_id: 1,
+      test_id: 1 },
+    { user_id: 2,
+      test_id: 1 },
+    { user_id: 2,
+      test_id: 2 },
+    { user_id: 3,
+      test_id: 3 }
   ]
 )
