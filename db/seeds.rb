@@ -8,7 +8,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(
+users = User.create!(
   [
     { username: 'user1',
       password: 'user1_p',
@@ -28,7 +28,7 @@ User.create!(
   ]
 )
 
-Category.create!(
+categories = Category.create!(
   [
     { title: 'frontend' },
     { title: 'backend' },
@@ -36,31 +36,31 @@ Category.create!(
   ]
 )
 
-Test.create!(
+tests = Test.create!(
   [
     { title: 'html',
       level: 0,
-      category_id: 1,
-      author_id: 1 },
+      category_id: categories[0].id,
+      author_id: users[0].id },
     { title: 'css',
       level: 0,
-      category_id: 1,
-      author_id: 2 },
+      category_id: categories[0].id,
+      author_id: users[1].id },
     { title: 'ruby',
       level: 1,
-      category_id: 3,
-      author_id: 3 }
+      category_id: categories[2].id,
+      author_id: users[2].id }
   ]
 )
 
-Question.create!(
+questions = Question.create!(
   [
     { body: ' What html is?',
-      test_id: 1 },
+      test_id: tests[0].id },
     { body: ' What css is?',
-      test_id: 2 },
+      test_id: tests[1].id },
     { body: ' What ruby is?',
-      test_id: 3 }
+      test_id: tests[2].id }
   ]
 )
 
@@ -68,32 +68,32 @@ Answer.create!(
   [
     { body: 'html',
       correct: true,
-      question_id: 1 },
+      question_id: questions[0].id },
     { body: 'not html',
-      question_id: 1 },
+      question_id: questions[0].id },
     { body: 'css',
       correct: true,
-      question_id: 2 },
+      question_id: questions[1].id },
     { body: 'not css',
       correct: true,
-      question_id: 2 },
+      question_id: questions[1].id },
     { body: 'ruby',
       correct: true,
-      question_id: 3 },
+      question_id: questions[2].id },
     { body: 'not ruby',
-      question_id: 3 }
+      question_id: questions[2].id }
   ]
 )
 
 TestsUser.create!(
   [
-    { user_id: 1,
-      test_id: 1 },
-    { user_id: 2,
-      test_id: 1 },
-    { user_id: 2,
-      test_id: 2 },
-    { user_id: 3,
-      test_id: 3 }
+    { user_id: users[0].id,
+      test_id: tests[0].id },
+    { user_id: users[1].id,
+      test_id: tests[0].id },
+    { user_id: users[1].id,
+      test_id: tests[1].id },
+    { user_id: users[2].id,
+      test_id: tests[2].id }
   ]
 )
