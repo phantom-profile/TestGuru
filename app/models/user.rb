@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_many :written_tests, class_name: 'Test', foreign_key: :author_id
+  has_and_belongs_to_many :tests
+
   def completed_tests(level)
-    Test
-      .joins('JOIN user_tests ON user_tests.test_id = tests.id')
-      .where(level: level, user_tests: { user_id: id })
+    tests.where(level: level)
   end
 end
