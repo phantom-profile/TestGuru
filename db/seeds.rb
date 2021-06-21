@@ -40,27 +40,27 @@ tests = Test.create!(
   [
     { title: 'html',
       level: 0,
-      category_id: categories[0].id,
-      author_id: users[0].id },
+      category: categories[0],
+      author: users[0] },
     { title: 'css',
       level: 0,
-      category_id: categories[0].id,
-      author_id: users[1].id },
+      category: categories[0],
+      author: users[1] },
     { title: 'ruby',
       level: 1,
-      category_id: categories[2].id,
-      author_id: users[2].id }
+      category: categories[2],
+      author: users[2] }
   ]
 )
 
 questions = Question.create!(
   [
     { body: ' What html is?',
-      test_id: tests[0].id },
+      test: tests[0] },
     { body: ' What css is?',
-      test_id: tests[1].id },
+      test: tests[1] },
     { body: ' What ruby is?',
-      test_id: tests[2].id }
+      test: tests[2] }
   ]
 )
 
@@ -68,32 +68,32 @@ Answer.create!(
   [
     { body: 'html',
       correct: true,
-      question_id: questions[0].id },
+      question: questions[0] },
     { body: 'not html',
-      question_id: questions[0].id },
+      question: questions[0] },
     { body: 'css',
       correct: true,
-      question_id: questions[1].id },
+      question: questions[1] },
     { body: 'not css',
       correct: true,
-      question_id: questions[1].id },
+      question: questions[1] },
     { body: 'ruby',
       correct: true,
-      question_id: questions[2].id },
+      question: questions[2] },
     { body: 'not ruby',
-      question_id: questions[2].id }
+      question: questions[2] }
   ]
 )
 
 TestsUser.create!(
   [
-    { user_id: users[0].id,
-      test_id: tests[0].id },
-    { user_id: users[1].id,
-      test_id: tests[0].id },
-    { user_id: users[1].id,
-      test_id: tests[1].id },
-    { user_id: users[2].id,
-      test_id: tests[2].id }
+    { user: users[0],
+      test: tests[0] },
+    { user: users[1],
+      test: tests[0] },
+    { user: users[1],
+      test: tests[1] },
+    { user: users[2],
+      test: tests[2] }
   ]
 )
