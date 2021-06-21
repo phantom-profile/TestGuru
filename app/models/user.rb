@@ -6,4 +6,6 @@ class User < ApplicationRecord
   has_many :tests, through: :tests_users
 
   scope :completed_tests, ->(level) { tests.where(level: level) }
+
+  validates :email, presence: true
 end
