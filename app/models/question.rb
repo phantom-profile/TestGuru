@@ -5,8 +5,8 @@ class Question < ApplicationRecord
 
   has_many :answers, dependent: :destroy
 
-  scope :correct_answers, -> { answers.where(correct: true) }
-
   validates :body, presence: true
   validates :answers, length: { in: 1..4 }
+
+  scope :correct_answers, -> { answers.where(correct: true) }
 end
