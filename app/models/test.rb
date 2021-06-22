@@ -19,6 +19,6 @@ class Test < ApplicationRecord
   scope :titles, -> { order(title: :desc).pluck(:title) }
 
   def self.by_category(category)
-    Test.where(category: Category.find_by(title: category)).titles
+    Test.joins(:category).where('category.title': category).titles
   end
 end
