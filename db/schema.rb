@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_214646) do
     t.integer "role", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "email"
+    t.string "email", null: false
   end
 
   add_foreign_key "answers", "questions"
