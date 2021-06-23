@@ -7,5 +7,5 @@ class Question < ApplicationRecord
 
   validates :body, presence: true
 
-  scope :correct_answers, -> { answers.where(correct: true) }
+  scope :correct, -> { answers.where(correct: true) }
 end
