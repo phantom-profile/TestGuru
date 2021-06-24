@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
-  before_action :test, only: %i[index new create destroy]
+  before_action :test, only: %i[index new create]
   before_action :question, only: %i[show destroy]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
@@ -17,15 +17,17 @@ class QuestionsController < ApplicationController
   def new; end
 
   def create
-    new_q = @test.questions.create(question_params)
-    render :new and return if new_q.new_record?
-
-    redirect_to new_q
+    @question = @test.questions.build(question_params)
+    if @question.save
+      redirect_to @question
+    else
+      render :new
+    end
   end
 
   def destroy
     @question.destroy
-    redirect_to @test
+    redirect_to @question.test
   end
 
   private
@@ -39,7 +41,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:body, :test_id)
+    params.require(:question).permit(:body)
   end
 
   def rescue_with_question_not_found
