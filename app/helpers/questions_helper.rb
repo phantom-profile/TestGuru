@@ -2,7 +2,7 @@
 
 module QuestionsHelper
   def question_header(test)
-    action = if action_name == 'new'
+    action = if @question.new_record?
                'Create'
              else
                'Edit'
