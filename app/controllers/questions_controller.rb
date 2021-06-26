@@ -1,20 +1,16 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
-  before_action :test, only: %i[index new create]
-  before_action :question, only: %i[show destroy]
+  before_action :test, only: %i[new create]
+  before_action :question, only: %i[show edit update destroy]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
-  def index
-    render inline: '<%= @test.questions.inspect %>'
-  end
+  def show; end
 
-  def show
-    render inline: '<%= @question.inspect %>'
+  def new
+    @question = @test.questions.new
   end
-
-  def new; end
 
   def create
     @question = @test.questions.build(question_params)
@@ -22,6 +18,16 @@ class QuestionsController < ApplicationController
       redirect_to @question
     else
       render :new
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @question.update(question_params)
+      redirect_to @question
+    else
+      render :edit
     end
   end
 
