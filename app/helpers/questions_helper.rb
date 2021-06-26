@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module QuestionsHelper
-  def question_header(test)
-    action = if @question.new_record?
+  def question_header(test:, question:)
+    action = if question.new_record?
                'Create'
              else
                'Edit'
