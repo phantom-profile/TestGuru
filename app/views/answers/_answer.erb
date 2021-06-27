@@ -1,0 +1,9 @@
+<li>
+  <%= answer.body %><br>
+  <td> <%= link_to 'Edit', edit_answer_path(answer) %> </td>
+  <td> <%= link_to 'Delete',
+                   answer_path(answer),
+                   method: :delete,
+                   data: {confirm: 'Are you sure?'}%> </td>
+  <td> <%= link_to 'To question', question_path(answer.question) %></td>
+</li>
