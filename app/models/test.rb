@@ -3,11 +3,11 @@
 # Tests of different categories with questions and answers
 class Test < ApplicationRecord
   belongs_to :category
-  belongs_to :author, foreign_key: :author_id, class_name: 'User'
+  belongs_to :author, foreign_key: :author_id, class_name: 'User', optional: true
 
   has_many :questions, dependent: :destroy
-  has_many :tests_users, dependent: :destroy
-  has_many :users, through: :tests_users
+  has_many :test_passages, dependent: :destroy
+  has_many :users, through: :test_passages
 
   validates :title, presence: true,
                     uniqueness: { scope: :level }
