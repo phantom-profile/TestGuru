@@ -87,16 +87,3 @@ Answer.create!(
       question: questions[2] }
   ]
 )
-
-TestsUser.create!(
-  [
-    { user: users[0],
-      test: tests[0] },
-    { user: users[1],
-      test: tests[0] },
-    { user: users[1],
-      test: tests[1] },
-    { user: users[2],
-      test: tests[2] }
-  ]
-)
