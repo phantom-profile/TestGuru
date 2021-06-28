@@ -37,7 +37,6 @@ class TestsController < ApplicationController
   end
 
   def start
-    # @user = User.find(params[:user_id])
     @user = User.first
     @user.tests.push(@test)
     redirect_to @user.test_passage(@test)

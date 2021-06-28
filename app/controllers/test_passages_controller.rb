@@ -2,9 +2,8 @@
 
 class TestPassagesController < ApplicationController
   before_action :test_passage, only: %i[show result update]
-  def show
-    params[:counter]
-  end
+
+  def show; end
 
   def result; end
 
