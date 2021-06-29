@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class TestPassage < ApplicationRecord
+
+  SUCCESS_PERCENT = 85
+
   belongs_to :user
   belongs_to :test
   belongs_to :current_question, class_name: 'Question', optional: true
@@ -22,11 +25,11 @@ class TestPassage < ApplicationRecord
   end
 
   def successful?
-    result >= 85
+    result >= SUCCESS_PERCENT
   end
 
   def current_question_number
-    test.questions.to_a.index(current_question) + 1
+    test.questions.order(:id).where('id <= ?', current_question.id).size
   end
 
   private
@@ -40,8 +43,9 @@ class TestPassage < ApplicationRecord
   end
 
   def correct_answer?(answer_ids)
-    answer_ids ||= []
-    correct_answers.ids.sort == answer_ids.map(&:to_i).sort
+    # если не будет выбрано ответов, то с помощью .to_a
+    # объект nil будет конвертирован в [] и ошибки не будет
+    correct_answers.ids.sort == answer_ids.to_a.map(&:to_i).sort
   end
 
   def next_question

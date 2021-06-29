@@ -10,7 +10,7 @@
       <%= answer.check_box id: "answer_ids_#{answer.object.id}" %>
       <%= answer.label %>
     </p>
-  <%end %>
+  <% end %>
   <p> <%= form.submit 'Next' %></p>
 <% end %>
 <h4> Question <%= @test_passage.current_question_number %> from <%= @test_passage.test.questions.count %></h4>
