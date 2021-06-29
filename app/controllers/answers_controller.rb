@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class AnswersController < ApplicationController
+  before_action :authenticate_user!, except: %i[show]
   before_action :answer, only: %i[show destroy edit update]
   before_action :question, only: %i[new create]
 
