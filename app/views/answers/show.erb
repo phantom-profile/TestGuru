@@ -1,0 +1,14 @@
+<h1> Question </h1>
+<h3> <%= @answer.question.body %></h3>
+
+<p>
+  <b>Answer:</b>
+  <%= @answer.body %>
+</p>
+
+<p>
+  <b>Correct:</b>
+  <%= @answer.correct %>
+</p>
+
+<%= link_to 'To question', question_path(@answer.question) %>

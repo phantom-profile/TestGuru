@@ -1,0 +1,10 @@
+<h1> Test <%= @test_passage.test.title %> was completed!</h1>
+<h2>
+  <% if @test_passage.successful? %>
+    <div class="success"> <%= result_of @test_passage %> </div>
+  <% else %>
+    <div class="fail"> <%= result_of @test_passage %> </div>
+  <% end %>
+</h2>
+<br>
+<p> <%= link_to 'To tests list', tests_path %></p>
