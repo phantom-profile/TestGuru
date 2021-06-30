@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     unless current_user
-      session[:login_permitted_path] = request.path
+      cookies[:login_permitted_path] = request.path
       redirect_to login_path, alert: 'You have to login to access this page'
     end
   end
