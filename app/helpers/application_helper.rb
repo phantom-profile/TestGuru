@@ -13,7 +13,7 @@ module ApplicationHelper
     link_to 'To tests', root_path
   end
 
-  def flash_msg(key:, tag:, style:)
-    content_tag tag, flash[key], class: style if flash[key]
+  def flash_msg(type:, tag:, style:)
+    content_tag tag, flash[type], class: style if flash[type]
   end
 end
