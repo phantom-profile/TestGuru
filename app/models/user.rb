@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :username
   validates :email, presence: true,
                     uniqueness: true,
-                    format: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+                    format: URI::MailTo::EMAIL_REGEXP
 
   scope :completed_tests, ->(level) { tests.where(level: level) }
 
