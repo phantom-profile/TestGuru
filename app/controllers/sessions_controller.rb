@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to cookies[:login_permitted_path] || root_path
-      cookies.delete(:login_permitted_path)
     else
       flash.now[:alert] = 'Login or password are incorrect'
       render :new
