@@ -1,22 +1,27 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :logged_in?
+  protect_from_forgery with: :exception
 
-  private
+  rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_resource_not_found
 
-  def authenticate_user!
-    unless current_user
-      cookies[:login_permitted_path] = request.path
-      redirect_to login_path, alert: 'You have to login to access this page'
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def after_sign_in_path_for(user)
+    if user.is_a?(Admin)
+      admin_tests_path
+    else
+      super
     end
   end
 
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username firstname lastname])
   end
 
-  def logged_in?
-    current_user.present?
+  def rescue_with_resource_not_found
+    render plain: "Object with id: #{params[:id]} was not found"
   end
 end
