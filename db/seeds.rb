@@ -10,23 +10,29 @@
 
 users = User.create!(
   [
+    { username: 'arum',
+      password: '888888',
+      firstname: 'andy',
+      email: 'w@w.w',
+      type: 'Admin',
+      lastname: 'rum' },
     { username: 'user1',
-      password_digest: 'user1_p',
+      password: 'user1_p',
       firstname: 'user1_f',
       email: 'example@user1.com',
-      role: 1,
+      type: 'User',
       lastname: 'user1_l' },
     { username: 'user2',
-      password_digest: 'user2_p',
+      password: 'user2_p',
       firstname: 'user2_f',
       email: 'example@user2.com',
-      role: 0,
+      type: 'User',
       lastname: 'user2_l' },
     { username: 'user3',
-      password_digest: 'user3_p',
+      password: 'user3_p',
       firstname: 'user3_f',
-      email: 'example@user2.com',
-      role: 0,
+      email: 'example@user3.com',
+      type: 'User',
       lastname: 'user3_l' }
   ]
 )
