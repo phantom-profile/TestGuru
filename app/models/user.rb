@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :validatable,
+         :rememberable,
+         :confirmable
 
   has_many :written_tests, class_name: 'Test', foreign_key: :author_id, dependent: :destroy
   has_many :test_passages, dependent: :destroy
@@ -13,8 +19,6 @@ class User < ApplicationRecord
                     format: URI::MailTo::EMAIL_REGEXP
 
   scope :completed_tests, ->(level) { tests.where(level: level) }
-
-  has_secure_password
 
   def test_passage(test)
     test_passages.order(id: :desc).find_by(test_id: test.id)
