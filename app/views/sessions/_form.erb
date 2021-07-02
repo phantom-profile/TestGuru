@@ -1,0 +1,16 @@
+<%= form_with url: sessions_path do |form| %>
+
+  <%= flash_msg type: :alert, tag: :p, style: 'flash alert' %>
+
+  <p>
+    <%= form.label :username %>
+    <%= form.text_field :username, id: :username %>
+  </p>
+
+  <p>
+    <%= form.label :password %>
+    <%= form.password_field :password, id: :password %>
+  </p>
+
+  <p><%= form.submit %></p>
+<% end %>

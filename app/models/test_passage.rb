@@ -43,8 +43,6 @@ class TestPassage < ApplicationRecord
   end
 
   def correct_answer?(answer_ids)
-    # если не будет выбрано ответов, то с помощью .to_a
-    # объект nil будет конвертирован в [] и ошибки не будет
     correct_answers.ids.sort == answer_ids.to_a.map(&:to_i).sort
   end
 

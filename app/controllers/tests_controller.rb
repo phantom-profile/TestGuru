@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TestsController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
   before_action :test, only: %i[show destroy edit update start]
 
   def index
@@ -18,7 +19,7 @@ class TestsController < ApplicationController
   end
 
   def create
-    @test = Test.create(test_params)
+    @test = current_user.written_tests.create(test_params)
     if @test.save
       redirect_to @test
     else
@@ -37,9 +38,8 @@ class TestsController < ApplicationController
   end
 
   def start
-    @user = User.first
-    @user.tests.push(@test)
-    redirect_to @user.test_passage(@test)
+    current_user.tests.push(@test)
+    redirect_to current_user.test_passage(@test)
   end
 
   private
