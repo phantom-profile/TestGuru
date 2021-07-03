@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  gist_created: "Gist created. Check it here %{link}"
+  gist_sending: "Question of %{test} from site TestGuru"
+  gist_button: "Question Gist"

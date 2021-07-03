@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   devise_for :users, path: :gurus, path_names: { sign_in: :login, sign_out: :logout }
 
-  resources :tests, only: [:index, :show] do
+  resources :tests, only: %i[index show] do
     resources :questions, only: [:show], shallow: true do
       resources :answers, only: [:show], shallow: true
     end
@@ -15,9 +15,11 @@ Rails.application.routes.draw do
 
   resources :test_passages, only: %i[show update] do
     get :result, on: :member
+    post :gist, on: :member
   end
 
   namespace :admin do
+    resources :gists, only: %i[index show]
     resources :tests do
       resources :questions, except: [:index], shallow: true do
         resources :answers, except: [:index], shallow: true

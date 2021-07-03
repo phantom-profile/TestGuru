@@ -1,2 +1,6 @@
 ru:
   hello: "привет, мир!"
+
+  gist_created: "Вопрос на GitHub успешно создан, и доступен по ссылке %{link}"
+  gist_sending: "Вопрос из теста %{test} с сайта TestGuru"
+  gist_button: "Создать Gist с вопросом"
