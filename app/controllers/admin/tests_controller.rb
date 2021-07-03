@@ -11,6 +11,7 @@ class Admin::TestsController < Admin::BaseController
 
   def destroy
     @test.destroy
+    redirect_to admin_tests_path
   end
 
   def new
@@ -18,9 +19,6 @@ class Admin::TestsController < Admin::BaseController
   end
 
   def create
-    # Не понял суть 4 задания, "назначать админа автором теста", у нас же пользователь - автор, а создавать
-    # тест может только пользователь с правами админа, значит автором всегда назначается админ
-    
     @test = current_user.written_tests.create(test_params)
     if @test.save
       redirect_to admin_test_path(@test)
