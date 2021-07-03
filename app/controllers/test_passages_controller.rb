@@ -2,7 +2,7 @@
 
 class TestPassagesController < ApplicationController
   before_action :authenticate_user!
-  before_action :test_passage, only: %i[show result update]
+  before_action :test_passage, only: %i[show result update gist]
 
   def show; end
 
@@ -16,6 +16,14 @@ class TestPassagesController < ApplicationController
     else
       render :show
     end
+  end
+
+  def gist
+    result = GistQuestionService.new(@test_passage.current_question).call
+    Gist.create(question: @test_passage.current_question.body,
+                user: current_user.email,
+                url: result.url)
+    flash[:notice] = t('gist_created', link: view_context.link_to('Gist', result.html_url)).html_safe
   end
 
   private
