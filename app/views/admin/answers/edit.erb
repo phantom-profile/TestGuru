@@ -3,4 +3,4 @@
 <h3> <%= @answer.question.body %> </h3>
 
 <%= render 'form' %>
-<%= link_to 'To question', question_path(@answer.question) %>
+<%= link_to 'To question', admin_question_path(@answer.question) %>
