@@ -26,7 +26,6 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.0'
 
 # HTTP connections to API
-gem 'faraday'
 gem "octokit", "~> 4.0"
 
 
