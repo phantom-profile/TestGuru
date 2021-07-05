@@ -1,0 +1,5 @@
+<tr>
+  <td><%= gist.question[0..24] %><% if gist.question[25..] %>...<% end %></td>
+  <td><%= gist.user %></td>
+  <td> <%= link_to 'view gist', gist.url, target: :_blank %></td>
+</tr>
