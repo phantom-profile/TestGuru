@@ -1,16 +1,19 @@
 # frozen_string_literal: true
 
 class GistQuestionService
+
+  ACCESS_TOKEN = Rails.application.credentials.dig(:github, :token)
+
   attr_reader :question, :test, :client
 
   def initialize(question, client: nil)
     @question = question
     @test = question.test
-    @client = client || GitHubClient.new
+    @client = client || Octokit::Client.new(access_token: ACCESS_TOKEN)
   end
 
   def call
-    client.create_gist(gist_params)
+    client.post('gists', gist_params.to_json)
   end
 
   private
@@ -23,7 +26,6 @@ class GistQuestionService
   end
 
   def gist_content
-    content = [question.body] + [question.answers.pluck(:body)]
-    content.join("\n")
+    [question.body, *question.answers.pluck(:body)].join("\n")
   end
 end
