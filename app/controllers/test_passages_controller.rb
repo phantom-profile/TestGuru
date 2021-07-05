@@ -18,14 +18,6 @@ class TestPassagesController < ApplicationController
     end
   end
 
-  def gist
-    result = GistQuestionService.new(@test_passage.current_question).call
-    Gist.create(question: @test_passage.current_question.body,
-                user: current_user.email,
-                url: result.url)
-    flash[:notice] = t('gist_created', link: view_context.link_to('Gist', result.html_url)).html_safe
-  end
-
   private
 
   def test_passage

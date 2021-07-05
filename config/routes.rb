@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :test_passages, only: %i[show update] do
+    resources :gists, only: [:create]
     get :result, on: :member
-    post :gist, on: :member
   end
 
   namespace :admin do
