@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-class GistQuestionService
+class Github::CreateGist
 
   ACCESS_TOKEN = Rails.application.credentials.dig(:github, :token)
+  GitHubResponse = Struct.new(:html_url, :url, :success?)
 
   attr_reader :question, :test, :client
 
@@ -13,7 +14,10 @@ class GistQuestionService
   end
 
   def call
-    client.post('gists', gist_params.to_json)
+    response = client.post('gists', gist_params.to_json)
+    GitHubResponse.new(html_url: response.html_url,
+                       url: response.url,
+                       success?: !response.html_url.nil?)
   end
 
   private
