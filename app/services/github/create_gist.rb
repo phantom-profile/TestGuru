@@ -18,7 +18,7 @@ class Github::CreateGist
   end
 
   def call
-    response = client.post('gists', gist_params.to_json)
+    response = client.create_gist(gist_params)
     GitHubResponse.new(html_url: response.html_url,
                        url: response.url)
   end
