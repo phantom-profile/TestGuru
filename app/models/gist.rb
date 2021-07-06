@@ -1,5 +1,5 @@
+# frozen_string_literal: true
+
 class Gist < ApplicationRecord
-
-	default_scope { order(created_at: :desc) }
-
+  scope :created_at_by_desc, -> { order(created_at: :desc) }
 end
