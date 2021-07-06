@@ -3,7 +3,11 @@
 class Github::CreateGist
 
   ACCESS_TOKEN = Rails.application.credentials.dig(:github, :token)
-  GitHubResponse = Struct.new(:html_url, :url, :success?)
+  GitHubResponse = Struct.new(:html_url, :url) do
+    def success?
+      !html_url.nil?
+    end
+  end
 
   attr_reader :question, :test, :client
 
@@ -16,8 +20,7 @@ class Github::CreateGist
   def call
     response = client.post('gists', gist_params.to_json)
     GitHubResponse.new(html_url: response.html_url,
-                       url: response.url,
-                       success?: !response.html_url.nil?)
+                       url: response.url)
   end
 
   private
