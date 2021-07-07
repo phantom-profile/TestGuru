@@ -1,0 +1,5 @@
+<tr>
+  <td><%= truncate gist.question, length: 25 %></td>
+  <td><%= gist.user %></td>
+  <td> <%= link_to 'view gist', gist.url, target: :_blank %></td>
+</tr>

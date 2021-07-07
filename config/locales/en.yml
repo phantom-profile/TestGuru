@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  gist_created: "Gist created. Check it here %{link}"
+  gist_not_created: "Impossible to access GitHub. Gist was not created"
+  gist_sending: "Question of %{test} from site TestGuru"
+  gist_button: "Question Gist"
