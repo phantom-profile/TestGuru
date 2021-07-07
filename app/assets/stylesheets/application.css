@@ -13,7 +13,16 @@
  *= require_tree .
  *= require_self
  */
-
+@import "typography/icons.scss";
+@import "bootstrap";
 a {
     color: forestgreen;
+}
+
+.hide {
+    display: none;
+}
+
+.pointer {
+    cursor: pointer;
 }
