@@ -1,30 +1,35 @@
 document.addEventListener('turbolinks:load', function () {
-    let passwordFields = document.querySelectorAll('.match-password')
-    if (passwordFields) {
-        for (let i = 0; i < passwordFields.length; i++) {
-            passwordFields[i].addEventListener(
-                'input',
-                () => passwordMatchMessage(passwordFields)
-            )
+  let passwordFields = document.querySelectorAll('.match-password')
+  if (passwordFields) {
+    passwordFields.forEach(function (field) {
+      field.addEventListener(
+        'input',
+        function () {
+          let matchMessage = new PasswordMatchMessage(passwordFields)
+          matchMessage.displayMessage()
         }
-    }
+      )
+    })
+  }
 })
 
-function passwordMatchMessage(fields) {
+class PasswordMatchMessage {
+  constructor(fields) {
+    this.password = fields[0]
+    this.passwordConfirmation = fields[1]
 
-    // fields with passwords
-    let password = fields[0]
-    let passwordConfirm = fields[1]
+    this.match = this.passwordConfirmation.parentNode.querySelector('.notice')
+    this.notMatch = this.passwordConfirmation.parentNode.querySelector('.alert')
+  }
 
-    // hidden messages
-    let notMatch = passwordConfirm.parentNode.querySelector('.alert')
-    let match = passwordConfirm.parentNode.querySelector('.notice')
-
-    if (password.value !== passwordConfirm.value) {
-        notMatch.classList.remove('hide')
-        match.classList.add('hide')
+  displayMessage() {
+    console.log(this.notMatch, this.match)
+    if (this.password.value !== this.passwordConfirmation.value) {
+      this.notMatch.classList.remove('hide')
+      this.match.classList.add('hide')
     } else {
-        match.classList.remove('hide')
-        notMatch.classList.add('hide')
+      this.match.classList.remove('hide')
+      this.notMatch.classList.add('hide')
     }
+  }
 }
