@@ -7,7 +7,7 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-require("utilities/sorting")
+require("packs/sorting")
 require("devise/password_match_alert")
 
 Rails.start()
