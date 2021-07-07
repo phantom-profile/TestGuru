@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GistsController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!
 
   def create
     @test_passage = TestPassage.find(params[:test_passage_id])
