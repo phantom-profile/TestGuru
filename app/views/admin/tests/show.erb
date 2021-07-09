@@ -2,8 +2,10 @@
 <h2> Level: <%= @test.level %></h2>
 <h3> Questions: </h3>
 
+<%= link_to 'New questions', new_admin_test_question_path(@test) %>
 <ul>
   <%= render @test.questions %>
 </ul>
 
+<%= link_to 'edit', edit_admin_test_path(@test) %>
 <%= link_to_root %>
