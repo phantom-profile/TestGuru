@@ -1,0 +1,11 @@
+<table class="progress-bar">
+  <%= content_tag :tr, class: 'progress-bar-row', data: { current_question: @test_passage.current_question_number } do %>
+    <% (1..@test_passage.test.questions.count).each do |i| %>
+      <%= content_tag :td, "Question #{i}",
+                      class: '',
+                      data: { question_number: i} %>
+    <% end %>
+    <td>Question <%= @test_passage.current_question_number %> from <%= @test_passage.test.questions.count %></td>
+  <% end %>
+</table>
+
