@@ -10,9 +10,7 @@ export default class TestPassageTimer {
   }
 
   parseTime = () => {
-    let m = this.divInt(this.time, 60)
-    let s = this.time % 60
-    return [ m,  s]
+    return [this.divInt(this.time, 60),  this.time % 60]
   }
 
   eachSecondAction = () => {
@@ -26,6 +24,7 @@ export default class TestPassageTimer {
     // timer nice displaying
     if (seconds < 10) seconds = '0' + seconds
     this.timer.innerText = `${minutes}:${seconds}`
+    if (this.time <=0 ) answerForm.submit()
   }
 
   start() {
