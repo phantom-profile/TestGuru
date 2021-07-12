@@ -5,7 +5,7 @@ module TestPassagesHelper
     success = test_passage.successful? ? 'successfully' : 'unsuccessfully'
     result = test_passage.result.to_i
     answer = "Test was completed #{success}. #{result}% of answers correct"
-    answer += ' Time runs out' if test_passage.time_runs_out
+    answer += ' Time runs out' if test_passage.time_runs_out?
     answer
   end
 end
