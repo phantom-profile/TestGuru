@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Admin::TestsController < Admin::BaseController
-  before_action :test, only: %i[show destroy edit update]
 
-  def index
-    @tests = Test.all
-  end
+  before_action :tests, only: %i[index update_inline]
+  before_action :test, only: %i[show destroy edit update update_inline]
+
+  def index; end
 
   def show; end
 
@@ -37,10 +37,22 @@ class Admin::TestsController < Admin::BaseController
     end
   end
 
+  def update_inline
+    if @test.update(test_params)
+      redirect_to admin_tests_path
+    else
+      render :index
+    end
+  end
+
   private
 
   def test
     @test = Test.find(params[:id])
+  end
+
+  def tests
+    @tests = Test.all
   end
 
   def test_params

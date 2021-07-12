@@ -9,6 +9,8 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 require("packs/sorting")
 require("devise/password_match_alert")
+require("packs/form_inline")
+require("packs/progress_bar")
 
 Rails.start()
 Turbolinks.start()
