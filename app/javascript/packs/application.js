@@ -11,6 +11,7 @@ require("packs/sorting")
 require("devise/password_match_alert")
 require("packs/form_inline")
 require("packs/progress_bar")
+require("packs/test_passage_timer")
 
 Rails.start()
 Turbolinks.start()

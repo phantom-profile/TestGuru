@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class TestPassage < ApplicationRecord
-
   SUCCESS_PERCENT = 85
 
   belongs_to :user
@@ -17,7 +16,7 @@ class TestPassage < ApplicationRecord
   end
 
   def completed?
-    current_question.nil?
+    current_question.nil? || time_runs_out?
   end
 
   def result
@@ -25,11 +24,19 @@ class TestPassage < ApplicationRecord
   end
 
   def successful?
-    result >= SUCCESS_PERCENT
+    result >= SUCCESS_PERCENT && !time_runs_out?
   end
 
   def current_question_number
     test.questions.order(:id).where('id <= ?', current_question.id).size
+  end
+
+  def time_runs_out?
+    time_remaining.negative?
+  end
+
+  def time_remaining
+    created_at + test.time.minutes - Time.current
   end
 
   private
