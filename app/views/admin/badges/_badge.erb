@@ -1,0 +1,10 @@
+<tr>
+  <td><%= truncate badge.title, length: 25 %></td>
+  <td> <%= link_to 'edit', edit_admin_badge_path(badge) %>
+  </td>
+  <td> <%= link_to 'delete',
+                   admin_badge_path(badge),
+                   method: :delete,
+                   data: {confirm: 'Are you sure?'}%> </td>
+  <td> <%= link_to 'badge info', admin_badge_path(badge) %></td>
+</tr>
