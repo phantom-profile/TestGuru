@@ -40,6 +40,7 @@ class Admin::BadgesController < Admin::BaseController
   def badge_params
     valid_params = params.require(:badge).permit(:title, :level, :test_id, :category_id, :unique, :rule)
     rule = valid_params[:rule]
+    # depended on what rule was chosen all unnecessary params are removed and needed one is renamed
     case rule
     when '1'
       valid_params.delete(:level)
