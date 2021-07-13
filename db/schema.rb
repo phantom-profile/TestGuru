@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_132713) do
     t.string "title", null: false
     t.string "image_link", default: "medal.png", null: false
     t.boolean "unique", default: true, null: false
+    t.integer "rule"
+    t.integer "rule_attribute"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
