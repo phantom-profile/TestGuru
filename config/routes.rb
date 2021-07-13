@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     get :result, on: :member
   end
 
-  resources :badges, only: %i[index show my_badges]
+  resources :badges, only: %i[index show] do
+    get :my, on: :collection
+  end
   resources :user_badges, only: :create
 
   namespace :admin do
