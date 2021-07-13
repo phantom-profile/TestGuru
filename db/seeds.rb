@@ -95,9 +95,9 @@ Answer.create!(
 )
 
 Badge.create!(
-	[
-		{ title: 'All Backend learned' },
-		{ title: 'All beginner tests done' },
-		{ title: 'Completed test with first attempt' }
-	]
+  [
+    { title: 'All Backend learned' },
+    { title: 'All beginner tests done' },
+    { title: 'Completed test with first attempt' }
+  ]
 )

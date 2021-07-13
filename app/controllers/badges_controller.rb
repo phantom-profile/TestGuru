@@ -7,7 +7,9 @@ class BadgesController < ApplicationController
     @badges = Badge.all
   end
 
-  def show; end
+  def show
+    @badge = Badge.find(params[:id])
+  end
 
   def my
     @badges = current_user.badges
