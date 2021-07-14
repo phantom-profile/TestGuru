@@ -1,5 +1,5 @@
-<h1> Achievements on TestGuru </h1>
-<%= link_to 'Look my achievements', my_badges_path %>
+<h1> Achievements of <%= current_user.username %> </h1>
+<%= link_to 'Look all achievements', badges_path %>
 <table class="table">
   <tr>
     <th class="sort-by-title pointer">
