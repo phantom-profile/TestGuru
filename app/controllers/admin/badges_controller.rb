@@ -24,14 +24,20 @@ class Admin::BadgesController < Admin::BaseController
 
   def edit; end
 
-  def update; end
+  def update
+    if @badge.update(badge_params)
+      redirect_to admin_badge_path(@badge)
+    else
+      render :edit
+    end
+  end
 
   def destroy
     @badge.destroy
     redirect_to admin_badges_path
   end
 
-    private
+  private
 
   def badge
     @badge = Badge.find(params[:id])
