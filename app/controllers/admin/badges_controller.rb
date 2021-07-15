@@ -10,23 +10,31 @@ class Admin::BadgesController < Admin::BaseController
   def show; end
 
   def new
+    @rule_types = Rule::TYPES
     @badge = Badge.new
   end
 
   def create
-    @badge = Badge.create(badge_params)
+    valid_params = badge_params
+    rule = valid_params.delete(:rule_type)
+    @badge = Badge.create(valid_params)
     if @badge.save
-      redirect_to admin_badge_path(@badge)
+      redirect_to new_admin_badge_rule_path(badge_id: @badge, rule_type: rule)
     else
       render :new
     end
   end
 
-  def edit; end
+  def edit
+    @rule_types = Rule::TYPES
+  end
 
   def update
-    if @badge.update(badge_params)
-      redirect_to admin_badge_path(@badge)
+
+    valid_params = badge_params
+    rule = valid_params.delete(:rule_type)
+    if @badge.update(valid_params)
+      redirect_to new_admin_badge_rule_path(@badge, rule_type: rule)
     else
       render :edit
     end
@@ -44,27 +52,7 @@ class Admin::BadgesController < Admin::BaseController
   end
 
   def badge_params
-    valid_params = params.require(:badge).permit(:title, :level, :test_id, :category_id, :unique, :rule)
-    rule = valid_params[:rule]
-    # depended on what rule was chosen all unnecessary params are removed and needed one is renamed
-    case rule
-    when '1'
-      valid_params.delete(:level)
-      valid_params.delete(:test_id)
-      valid_params[:rule_attribute] = valid_params[:category_id]
-      valid_params.delete(:category_id)
-    when '2'
-      valid_params.delete(:category_id)
-      valid_params.delete(:test_id)
-      valid_params[:rule_attribute] = valid_params[:level]
-      valid_params.delete(:level)
-    when '3'
-      valid_params.delete(:level)
-      valid_params.delete(:category_id)
-      valid_params[:rule_attribute] = valid_params[:test_id]
-      valid_params.delete(:test_id)
-    end
-    valid_params
+    params.require(:badge).permit(:title, :unique, :rule_type)
   end
 end
 
