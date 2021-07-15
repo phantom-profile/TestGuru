@@ -1,0 +1,16 @@
+<%= form_with model: [:admin, @badge, @rule] do |form| %>
+
+  <%= form.hidden_field :rule_type, value: @type %>
+
+  <%= render 'shared/form_errors', resource: @rule %>
+  <p>
+    <%= form.label @label %>
+    <% if @field == 'select' %>
+      <%= form.collection_select :rule_attribute, @rule_attribute[0], :id, @rule_attribute[1], prompt: true %>
+    <% elsif @field == 'numeric' %>
+      <%= form.number_field :rule_attribute %>
+    <% end %>
+  </p>
+
+  <p><%= form.submit %></p>
+<% end %>

@@ -13,22 +13,7 @@
 
   <p>
     <%= form.label 'Rule' %>
-    <%= form.select('rule', [['Category', 1], ['Level', 2], ['First', 3]], { include_blank: true }, class: "rule-type") %>
-  </p>
-
-  <p class="rule-attribute hide">
-    <%= form.label :category_id %>
-    <%= form.collection_select :category_id, Category.all, :id, :title, prompt: true %>
-  </p>
-
-  <p class="rule-attribute hide">
-    <%= form.label :level %>
-    <%= form.number_field :level %>
-  </p>
-
-  <p class="rule-attribute hide">
-    <%= form.label :test_id %>
-    <%= form.collection_select :test_id, Test.all, :id, :title, prompt: true %>
+    <%= form.select('rule_type', @rule_types, { include_blank: true }, class: "rule-type") %>
   </p>
 
   <p><%= form.submit %></p>
