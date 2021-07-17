@@ -1,5 +1,6 @@
-class UserBadge < ApplicationRecord
+# frozen_string_literal: true
 
-	belongs_to :user
-	belongs_to :badge
+class UserBadge < ApplicationRecord
+  belongs_to :user
+  belongs_to :badge
 end
