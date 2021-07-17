@@ -11,8 +11,8 @@ class Admin::BadgesController < Admin::BaseController
 
   def new
     @rule_types = []
-    Badge::RULES.each do |key, _value|
-      @rule_types << [key, key]
+    Badge::RULES.each do |rule|
+      @rule_types << [rule, rule]
     end
     @badge = Badge.new
   end
@@ -28,8 +28,8 @@ class Admin::BadgesController < Admin::BaseController
 
   def edit
     @rule_types = []
-    Badge::RULES.each do |key, _value|
-      @rule_types << [key, key]
+    Badge::RULES.each do |rule|
+      @rule_types << [rule, rule]
     end
   end
 

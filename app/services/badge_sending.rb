@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class BadgeSending
+
+  RULES = {
+    'Completed tests of category': BadgeRules::AllTestsOfCategory,
+    'Completed tests of level': BadgeRules::AllTestsOfLevel,
+    'Completed test with first attempt': BadgeRules::TestWithFirstAttempt
+  }.freeze
+
   def self.call(test_passage)
     new(test_passage).call
   end
@@ -11,12 +18,8 @@ class BadgeSending
   end
 
   def call
-    puts(Badge::RULES.inspect)
     Badge.find_each do |badge|
-      if Badge::RULES[badge.rule.to_sym].achieved?(@test_passage, badge)
-        UserBadge.create(badge: badge, user: @user)
-        @message = "#{badge.title} achieved"
-      end
+      @user.badges.push(badge) if RULES[badge.rule.to_sym].achieved?(@test_passage, badge)
     end
   end
 end
