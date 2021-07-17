@@ -10,31 +10,33 @@ class Admin::BadgesController < Admin::BaseController
   def show; end
 
   def new
-    @rule_types = Rule::TYPES
+    @rule_types = []
+    Badge::RULES.each do |key, _value|
+      @rule_types << [key, key]
+    end
     @badge = Badge.new
   end
 
   def create
-    valid_params = badge_params
-    rule = valid_params.delete(:rule_type)
-    @badge = Badge.create(valid_params)
+    @badge = Badge.create(badge_params)
     if @badge.save
-      redirect_to new_admin_badge_rule_path(badge_id: @badge, rule_type: rule)
+      redirect_to admin_badges_path
     else
       render :new
     end
   end
 
   def edit
-    @rule_types = Rule::TYPES
+    @rule_types = []
+    Badge::RULES.each do |key, _value|
+      @rule_types << [key, key]
+    end
   end
 
   def update
-
-    valid_params = badge_params
-    rule = valid_params.delete(:rule_type)
-    if @badge.update(valid_params)
-      redirect_to new_admin_badge_rule_path(@badge, rule_type: rule)
+    @badge = Badge.update(badge_params)
+    if @badge.save
+      redirect_to admin_badges_path
     else
       render :edit
     end
@@ -52,7 +54,7 @@ class Admin::BadgesController < Admin::BaseController
   end
 
   def badge_params
-    params.require(:badge).permit(:title, :unique, :rule_type)
+    params.require(:badge).permit(:title, :unique, :rule, :rule_attribute)
   end
 end
 

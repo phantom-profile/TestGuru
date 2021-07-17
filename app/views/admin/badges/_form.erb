@@ -13,7 +13,12 @@
 
   <p>
     <%= form.label 'Rule' %>
-    <%= form.select('rule_type', @rule_types, { include_blank: true }, class: "rule-type") %>
+    <%= form.select('rule', @rule_types, { include_blank: true }, class: "rule-type") %>
+  </p>
+
+  <p>
+    <%= form.label 'Rule attribute' %>
+    <%= form.number_field :rule_attribute %>
   </p>
 
   <p><%= form.submit %></p>
