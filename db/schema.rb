@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_14_172806) do
+ActiveRecord::Schema.define(version: 2021_07_13_132713) do
 
   create_table "answers", force: :cascade do |t|
     t.string "body", null: false
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2021_07_14_172806) do
     t.string "title", null: false
     t.string "image_link", default: "medal.png", null: false
     t.boolean "unique", default: true, null: false
+    t.string "rule"
+    t.integer "rule_attribute"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -49,15 +51,6 @@ ActiveRecord::Schema.define(version: 2021_07_14_172806) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["test_id"], name: "index_questions_on_test_id"
-  end
-
-  create_table "rules", force: :cascade do |t|
-    t.integer "rule_type"
-    t.integer "rule_attribute"
-    t.integer "badge_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["badge_id"], name: "index_rules_on_badge_id"
   end
 
   create_table "test_passages", force: :cascade do |t|
@@ -122,7 +115,6 @@ ActiveRecord::Schema.define(version: 2021_07_14_172806) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "tests"
-  add_foreign_key "rules", "badges"
   add_foreign_key "test_passages", "questions", column: "current_question_id"
   add_foreign_key "test_passages", "tests"
   add_foreign_key "test_passages", "users"
