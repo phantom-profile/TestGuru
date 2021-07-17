@@ -3,7 +3,7 @@ class BadgeRules::BaseBadgeRule
   def self.achieved?(test_passage, badge)
     return false if badge.unique && badge.users.include?(test_passage.user)
 
-    new(test_passage, badge).call
+    new(test_passage, badge).achieved?
   end
 
   def initialize(test_passage, badge)
@@ -11,5 +11,5 @@ class BadgeRules::BaseBadgeRule
     @badge = badge
   end
 
-  def call; end
+  def achieved?; end
 end
