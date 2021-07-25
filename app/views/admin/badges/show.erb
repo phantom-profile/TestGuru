@@ -1,0 +1,4 @@
+<h1> Badge: "<%= @badge.title %>"</h1>
+<%= image_tag(@badge.image_link, alt: "medal", class: 'img-size') %>
+<%= link_to 'edit', edit_admin_badge_path(@badge) %>
+<%= link_to_root %>

@@ -93,3 +93,11 @@ Answer.create!(
       question: questions[2] }
   ]
 )
+
+Badge.create!(
+  [
+    { title: 'All Backend learned' },
+    { title: 'All beginner tests done' },
+    { title: 'Completed test with first attempt' }
+  ]
+)

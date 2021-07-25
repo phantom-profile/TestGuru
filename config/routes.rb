@@ -18,10 +18,16 @@ Rails.application.routes.draw do
     get :result, on: :member
   end
 
+  resources :badges, only: %i[index show] do
+    get :my, on: :collection
+  end
+  resources :user_badges, only: :create
+
   namespace :admin do
     resources :gists, only: %i[index show]
+    resources :badges
     resources :tests do
-			patch :update_inline, on: :member
+      patch :update_inline, on: :member
       resources :questions, except: [:index], shallow: true do
         resources :answers, except: [:index], shallow: true
       end

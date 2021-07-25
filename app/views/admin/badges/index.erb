@@ -1,17 +1,15 @@
-<h1> Tests on TestGuru </h1>
+<h1> Achievements on TestGuru </h1>
 
-<%= link_to 'Achievements', badges_path %>
-<table>
+<h3> <%= link_to 'Create new badge', new_admin_badge_path %></h3>
+
+<table class="table">
   <tr>
     <th class="sort-by-title pointer">
       Title
       <%= octicon 'arrow-up', class: 'text-success hide' %>
       <%= octicon 'arrow-down', class: 'text-success hide' %>
     </th>
-    <th>Level</th>
-    <th>Questions</th>
-    <th>Passage Time</th>
   </tr>
 
-  <%= render @tests %>
+  <%= render @badges %>
 </table>
